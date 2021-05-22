@@ -6,7 +6,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 start = datetime.fromisoformat(config['btc']['start'][:-2])
 
-end = datetime.now()
+end = datetime(2021,5,22,0,0,0)
 url = 'https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?limit=50000&period_id=1HRS&time_start={}&time_end={}'.format(start.strftime("%Y-%m-%dT%H:%M:%S"),end.strftime("%Y-%m-%dT%H:%M:%S"))
 
 # Código usando o id.uff.br
