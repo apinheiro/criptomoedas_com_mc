@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, os
 from tqdm import tqdm
 from datetime import datetime
 
@@ -14,11 +14,10 @@ trades = json.loads(response.text)
 
 print('Iniciando a gravação')
 tq = tqdm(total=len(trades))
-with open('trades_btc_usd.csv','w') as c:
+with open(os.path.join('dataset','trades_btc_usd.csv'),'w') as c:
     c.writelines('hora;fechamento;ganho;perda')
     anterior = 0.0
     for t in trades:
         atual = float(t['rate_close'])
         c.writelines(f"{t['time_period_en']};{t['rate_close']};{1 if atual > anterior else 0};{1 if atual <= anterior else 0}")
         tq.update(1)
-    

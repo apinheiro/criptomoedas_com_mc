@@ -15,7 +15,7 @@ trades = json.loads(response.text)
 
 print('Iniciando a gravação')
 tq = tqdm(total=len(trades))
-with open('trades_btc_usd.csv','w') as c:
+with open(os.path.join('dataset','trades_btc_usd.csv'),'w') as c:
     c.writelines('hora;fechamento;ganho;perda')
     anterior = 0.0
     for t in trades:
